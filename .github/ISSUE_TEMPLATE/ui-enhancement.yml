@@ -1,0 +1,154 @@
+name: 🎨 UI/UX Enhancement
+description: Suggest improvements to the user interface or user experience
+title: "[UI]: "
+labels: ["enhancement", "ui/ux", "copilot-ready"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## UI/UX Enhancement Request
+        Use this form to suggest improvements to how the application looks or how users interact with it.
+        
+        **Note:** Fields marked with * are required.
+
+  - type: dropdown
+    id: enhancement-type
+    attributes:
+      label: Enhancement Type *
+      description: What type of UI/UX improvement are you suggesting?
+      options:
+        - Visual design/styling
+        - Layout/spacing
+        - User interaction/behavior
+        - Accessibility
+        - Responsiveness (mobile/tablet)
+        - New UI component
+        - Performance/loading
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: page-component
+    attributes:
+      label: Which page or component? *
+      description: Where should this enhancement be applied?
+      options:
+        - Home page/Activities list
+        - Activity details
+        - Signup form
+        - Navigation
+        - Header/footer
+        - Entire application
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: current-state
+    attributes:
+      label: Current State *
+      description: Describe how it currently looks or behaves
+      placeholder: What is the current state of the UI/UX?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-enhancement
+    attributes:
+      label: Proposed Enhancement *
+      description: Describe your suggested improvement in detail
+      placeholder: What should be changed and how should it look or behave?
+    validations:
+      required: true
+
+  - type: textarea
+    id: user-benefit
+    attributes:
+      label: User Benefit *
+      description: How will this improvement help users?
+      placeholder: Explain the benefit to students, teachers, or administrators
+    validations:
+      required: true
+
+  - type: textarea
+    id: mockups
+    attributes:
+      label: Mockups or Examples
+      description: Provide visual examples if available
+      placeholder: Drag and drop images, or provide links to similar designs
+    validations:
+      required: false
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: How important is this enhancement?
+      options:
+        - High - Significantly improves usability
+        - Medium - Nice to have improvement
+        - Low - Minor cosmetic change
+    validations:
+      required: false
+
+  - type: textarea
+    id: technical-suggestions
+    attributes:
+      label: Technical Suggestions
+      description: Any specific technical approaches or libraries to consider?
+      placeholder: e.g., "Use CSS Grid", "Add loading spinner", "Implement dark mode toggle"
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Any other relevant information?
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ### Implementation Hints for Copilot
+        
+        **Files to Consider:**
+        - **HTML Structure**: `src/static/index.html`
+        - **Styling**: `src/static/styles.css`
+        - **Interactions**: `src/static/app.js`
+        - **Backend (if data changes needed)**: `src/backend/routers/activities.py`
+        
+        **UI Enhancement Guidelines:**
+        1. Review the current implementation in the relevant files
+        2. Understand the current styling approach (inline styles, CSS classes, etc.)
+        3. Make changes consistent with existing design patterns
+        4. Consider responsive design (mobile, tablet, desktop)
+        5. Ensure accessibility (contrast, keyboard navigation, screen readers)
+        6. Keep styling maintainable and well-organized
+        
+        **Common UI Improvements:**
+        - **Visual**: Colors, fonts, spacing, shadows, borders, icons
+        - **Layout**: Grid/flexbox, alignment, positioning, card designs
+        - **Interaction**: Hover effects, animations, transitions, loading states
+        - **Accessibility**: ARIA labels, focus states, color contrast, semantic HTML
+        - **Responsiveness**: Media queries, flexible layouts, mobile-first design
+        
+        **Acceptance Criteria:**
+        - The enhancement is implemented as described
+        - Visual changes match the proposal or improve upon it
+        - Changes are consistent with existing design
+        - The UI remains functional and user-friendly
+        - Responsive design is maintained
+        - Accessibility standards are met
+        - No functionality is broken
+        
+        **Testing:**
+        - View the changes in a web browser
+        - Test on different screen sizes (desktop, tablet, mobile)
+        - Verify interactions work smoothly
+        - Check accessibility with keyboard navigation
+        - Ensure no layout breaks or visual bugs
+        - Compare with original design to confirm improvement

@@ -1,0 +1,143 @@
+name: ✏️ Modify Activity Details
+description: Request changes to an existing extracurricular activity
+title: "[Activity]: Update <activity name>"
+labels: ["enhancement", "activity", "modification", "copilot-ready"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Modify Activity Details
+        Use this form to request changes to an existing extracurricular activity.
+        
+        **Note:** Fields marked with * are required. Only fill in the fields you want to change.
+
+  - type: input
+    id: activity-name
+    attributes:
+      label: Activity Name *
+      description: Which activity do you want to modify?
+      placeholder: e.g., "Chess Club", "Programming Class"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: change-type
+    attributes:
+      label: What would you like to change? *
+      description: Select the type of change needed
+      multiple: true
+      options:
+        - Description
+        - Schedule (days/times)
+        - Maximum participants
+        - Current participants list
+        - Activity name
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: new-description
+    attributes:
+      label: New Description
+      description: If changing description, provide the new text here
+      placeholder: Enter the updated description
+    validations:
+      required: false
+
+  - type: input
+    id: new-schedule-days
+    attributes:
+      label: New Schedule - Days of Week
+      description: If changing schedule, what are the new days?
+      placeholder: e.g., "Monday, Wednesday, Friday"
+    validations:
+      required: false
+
+  - type: input
+    id: new-schedule-time
+    attributes:
+      label: New Schedule - Time
+      description: If changing schedule, what is the new time?
+      placeholder: e.g., "3:30 PM - 5:00 PM"
+    validations:
+      required: false
+
+  - type: input
+    id: new-max-participants
+    attributes:
+      label: New Maximum Participants
+      description: If changing capacity, what is the new maximum?
+      placeholder: e.g., "25"
+    validations:
+      required: false
+
+  - type: input
+    id: new-activity-name
+    attributes:
+      label: New Activity Name
+      description: If renaming the activity, what is the new name?
+      placeholder: e.g., "Advanced Chess Club"
+    validations:
+      required: false
+
+  - type: textarea
+    id: participant-changes
+    attributes:
+      label: Participant Changes
+      description: If modifying participants, describe the changes needed
+      placeholder: |
+        Add: student@mergington.edu
+        Remove: oldstudent@mergington.edu
+    validations:
+      required: false
+
+  - type: textarea
+    id: reason
+    attributes:
+      label: Reason for Change *
+      description: Why is this change needed?
+      placeholder: Explain the reason for the modification
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Any other relevant information?
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ### Implementation Hints for Copilot
+        
+        **File to modify:** `src/backend/database.py`
+        
+        **What needs to be done:**
+        1. Locate the activity by name in the `initial_activities` dictionary
+        2. Update only the fields that were specified in the request
+        3. If changing schedule, ensure proper format:
+           - Update both `schedule` (human-readable) and `schedule_details` (structured data)
+           - Convert times to 24-hour format for `schedule_details`
+           - Days should be in array format (e.g., ["Monday", "Wednesday"])
+        4. If renaming activity, update the dictionary key and maintain all existing data
+        5. If modifying participants, update the `participants` array
+        6. Ensure data types are correct (integers for max_participants, arrays for participants and days)
+        
+        **Acceptance Criteria:**
+        - Only the specified fields are modified
+        - The activity still appears and functions correctly
+        - Schedule changes are reflected in both `schedule` and `schedule_details`
+        - All data format requirements are maintained
+        - Existing participants are preserved unless explicitly changed
+        
+        **Testing:**
+        - Restart the application and verify changes appear correctly
+        - Check the `/activities` endpoint shows updated information
+        - Verify the UI displays the changes properly
+        - If schedule changed, confirm the new schedule is displayed
+        - If capacity changed, test signup limits work correctly

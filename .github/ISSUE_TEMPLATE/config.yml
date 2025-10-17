@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 📚 Documentation
+    url: https://github.com/crif-nhan-tran/skills-expand-your-team-with-copilot/blob/main/docs/how-to-develop.md
+    about: View the development guide and documentation
+  - name: 💬 Discussions
+    url: https://github.com/crif-nhan-tran/skills-expand-your-team-with-copilot/discussions
+    about: Ask questions and discuss ideas with the community

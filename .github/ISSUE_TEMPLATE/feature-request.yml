@@ -1,0 +1,190 @@
+name: ✨ Feature Request
+description: Suggest a new feature or functionality for the system
+title: "[Feature]: "
+labels: ["enhancement", "feature-request", "copilot-ready"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Feature Request
+        Use this form to suggest new features or functionality for the Mergington High School system.
+        
+        **Note:** Fields marked with * are required.
+
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: Feature Description *
+      description: Describe the feature you'd like to see
+      placeholder: A clear and detailed description of the proposed feature
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem-statement
+    attributes:
+      label: Problem Statement *
+      description: What problem does this feature solve?
+      placeholder: Describe the problem or need this feature addresses
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: Proposed Solution *
+      description: How should this feature work?
+      placeholder: Describe how users would interact with this feature
+    validations:
+      required: true
+
+  - type: dropdown
+    id: feature-category
+    attributes:
+      label: Feature Category *
+      description: What type of feature is this?
+      options:
+        - Activity management
+        - User management
+        - Search/filtering
+        - Notifications/reminders
+        - Reporting/analytics
+        - Data export/import
+        - Integration with other systems
+        - Authentication/authorization
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: user-type
+    attributes:
+      label: Primary User Type *
+      description: Who would primarily use this feature?
+      multiple: true
+      options:
+        - Students
+        - Teachers
+        - Administrators
+        - All users
+    validations:
+      required: true
+
+  - type: textarea
+    id: user-stories
+    attributes:
+      label: User Stories
+      description: Provide user stories in the format "As a [user], I want [goal] so that [benefit]"
+      placeholder: |
+        As a student, I want to filter activities by day of the week so that I can find activities that fit my schedule.
+        As a teacher, I want to see a list of students in my activity so that I can plan accordingly.
+    validations:
+      required: false
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance Criteria *
+      description: How will we know this feature is complete?
+      placeholder: |
+        - Users can access the feature from the main page
+        - Feature works as described
+        - Data is saved/retrieved correctly
+        - UI is intuitive and user-friendly
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: How important is this feature?
+      options:
+        - Critical - Core functionality needed
+        - High - Would significantly improve the system
+        - Medium - Nice to have
+        - Low - Optional enhancement
+    validations:
+      required: false
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternative Solutions
+      description: Have you considered any alternative approaches?
+      placeholder: Describe any alternative solutions you've thought about
+    validations:
+      required: false
+
+  - type: textarea
+    id: technical-considerations
+    attributes:
+      label: Technical Considerations
+      description: Any technical details, constraints, or considerations?
+      placeholder: Database changes needed, API endpoints, security concerns, etc.
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Any other relevant information?
+      placeholder: Links, screenshots, examples from other systems, etc.
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ### Implementation Hints for Copilot
+        
+        **Planning Steps:**
+        1. Review the feature description and requirements carefully
+        2. Identify all files that need to be modified or created
+        3. Plan the implementation approach
+        4. Consider data model changes if needed
+        5. Think about user interface requirements
+        6. Identify any dependencies or prerequisites
+        
+        **Common Implementation Areas:**
+        
+        **Backend Changes:**
+        - `src/backend/database.py` - Data model changes
+        - `src/backend/routers/activities.py` - Activity-related endpoints
+        - `src/backend/routers/auth.py` - Authentication-related endpoints
+        - New router files if needed for new functionality
+        
+        **Frontend Changes:**
+        - `src/static/index.html` - HTML structure
+        - `src/static/app.js` - JavaScript logic
+        - `src/static/styles.css` - Styling
+        
+        **API Integration:**
+        - Define new API endpoints in FastAPI routers
+        - Use appropriate HTTP methods (GET, POST, PUT, DELETE)
+        - Add proper error handling and validation
+        - Return appropriate status codes and responses
+        
+        **Database Considerations:**
+        - Modify data structures in `initial_activities` or `initial_teachers`
+        - Ensure backward compatibility with existing data
+        - Add validation for new fields
+        - Consider MongoDB collection structure
+        
+        **Acceptance Criteria:**
+        - All criteria listed in the feature request are met
+        - Feature integrates seamlessly with existing functionality
+        - Code is clean, maintainable, and well-structured
+        - No existing functionality is broken
+        - Error handling is appropriate
+        - User experience is intuitive
+        
+        **Testing:**
+        - Test all new functionality thoroughly
+        - Verify acceptance criteria are met
+        - Test edge cases and error scenarios
+        - Ensure existing features still work
+        - Test user interface on different screen sizes
+        - Verify API endpoints work correctly

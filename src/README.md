@@ -7,6 +7,7 @@ A super simple website application that allows students to view and sign up for 
 - View all available extracurricular activities
 - Sign up for activities
 
-## Development Guide
+## Documentation
 
-For detailed setup and development instructions, please refer to our [Development Guide](../docs/how-to-develop.md).
+- **[How to Request Changes](../docs/how-to-request-changes.md)** - Guide for teachers to request changes without coding
+- **[Development Guide](../docs/how-to-develop.md)** - Technical setup and development instructions

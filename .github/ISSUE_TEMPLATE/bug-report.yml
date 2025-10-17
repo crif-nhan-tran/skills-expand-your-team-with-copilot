@@ -1,0 +1,155 @@
+name: 🐛 Bug Report
+description: Report a problem with the Mergington High School system
+title: "[Bug]: "
+labels: ["bug", "needs-triage", "copilot-ready"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Bug Report
+        Thanks for taking the time to report a bug! Please provide as much detail as possible to help us understand and fix the issue.
+        
+        **Note:** Fields marked with * are required.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug Description *
+      description: A clear and concise description of what the bug is
+      placeholder: Describe what's happening that shouldn't be happening
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected Behavior *
+      description: What did you expect to happen?
+      placeholder: Describe what should happen instead
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: Steps to Reproduce *
+      description: How can we recreate this issue?
+      placeholder: |
+        1. Go to '...'
+        2. Click on '...'
+        3. Scroll down to '...'
+        4. See error
+    validations:
+      required: true
+
+  - type: dropdown
+    id: component
+    attributes:
+      label: Which part of the system is affected? *
+      description: Select the component where the bug occurs
+      options:
+        - Activities list/display
+        - Activity signup
+        - User authentication
+        - Schedule display
+        - Database/data storage
+        - User interface
+        - API endpoints
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity *
+      description: How severe is this bug?
+      options:
+        - Critical - System is unusable
+        - High - Major functionality broken
+        - Medium - Feature partially working
+        - Low - Minor issue or cosmetic
+    validations:
+      required: true
+
+  - type: textarea
+    id: error-messages
+    attributes:
+      label: Error Messages
+      description: If you see any error messages, paste them here
+      placeholder: Copy and paste any error messages, console logs, or stack traces
+      render: shell
+    validations:
+      required: false
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: If applicable, add screenshots to help explain the problem
+      placeholder: Drag and drop images here or paste image URLs
+    validations:
+      required: false
+
+  - type: input
+    id: browser
+    attributes:
+      label: Browser/Environment
+      description: What browser or environment are you using?
+      placeholder: e.g., Chrome 120, Firefox 121, Safari 17
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Any other information that might be helpful?
+      placeholder: Add any other context about the problem here
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ### Implementation Hints for Copilot
+        
+        **Investigation Steps:**
+        1. Review the affected component mentioned in the report
+        2. Examine the steps to reproduce to understand the issue
+        3. Check relevant files:
+           - Frontend: `src/static/index.html`, `src/static/app.js`, `src/static/styles.css`
+           - Backend: `src/backend/routers/activities.py`, `src/backend/routers/auth.py`
+           - Database: `src/backend/database.py`
+           - Main app: `src/app.py`
+        4. Look for error handling gaps, validation issues, or logic errors
+        5. Check for edge cases or incorrect assumptions in the code
+        
+        **Common Bug Categories:**
+        - **Data validation**: Missing or incorrect input validation
+        - **Error handling**: Unhandled exceptions or errors
+        - **Logic errors**: Incorrect conditional logic or calculations
+        - **UI issues**: Display problems, incorrect styling, or broken interactions
+        - **API issues**: Wrong response codes, missing data, or incorrect endpoints
+        
+        **Fix Guidelines:**
+        - Make minimal changes to fix the specific bug
+        - Add appropriate error handling if missing
+        - Ensure fix doesn't break other functionality
+        - Add validation if data validation was the issue
+        - Update error messages to be more helpful if needed
+        
+        **Acceptance Criteria:**
+        - The specific bug described is fixed
+        - Steps to reproduce no longer produce the error
+        - Expected behavior is now observed
+        - No new bugs are introduced
+        - Error handling is appropriate
+        
+        **Testing:**
+        - Follow the exact steps to reproduce from the bug report
+        - Verify the expected behavior now occurs
+        - Test related functionality to ensure nothing else broke
+        - Check error messages are clear and helpful
+        - Test edge cases related to the fix

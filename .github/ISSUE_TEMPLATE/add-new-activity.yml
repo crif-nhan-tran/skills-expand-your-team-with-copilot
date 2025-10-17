@@ -1,0 +1,106 @@
+name: 🎯 Add New Activity
+description: Request to add a new extracurricular activity to the system
+title: "[Activity]: Add <activity name>"
+labels: ["enhancement", "activity", "copilot-ready"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Add New Activity
+        Use this form to request a new extracurricular activity be added to Mergington High School's system.
+        
+        **Note:** All fields marked with * are required. Providing complete information helps Copilot coding agent implement your request without additional clarification.
+
+  - type: input
+    id: activity-name
+    attributes:
+      label: Activity Name *
+      description: What is the name of the new activity?
+      placeholder: e.g., "Photography Club", "Yearbook Committee"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Activity Description *
+      description: Provide a detailed description of what this activity is about
+      placeholder: A clear, engaging description that students will see when browsing activities
+    validations:
+      required: true
+
+  - type: input
+    id: schedule-days
+    attributes:
+      label: Schedule - Days of Week *
+      description: Which days does this activity meet?
+      placeholder: e.g., "Monday, Wednesday, Friday" or "Tuesday, Thursday"
+    validations:
+      required: true
+
+  - type: input
+    id: schedule-time
+    attributes:
+      label: Schedule - Time *
+      description: What time does the activity meet?
+      placeholder: e.g., "3:30 PM - 5:00 PM" or "7:00 AM - 8:00 AM"
+    validations:
+      required: true
+
+  - type: input
+    id: max-participants
+    attributes:
+      label: Maximum Participants *
+      description: What is the maximum number of students that can participate?
+      placeholder: e.g., "20"
+    validations:
+      required: true
+
+  - type: textarea
+    id: initial-participants
+    attributes:
+      label: Initial Participants (Optional)
+      description: List any students already signed up (one email per line)
+      placeholder: |
+        student1@mergington.edu
+        student2@mergington.edu
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Any other information that would be helpful?
+      placeholder: Special requirements, equipment needed, teacher sponsor, etc.
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ### Implementation Hints for Copilot
+        
+        **File to modify:** `src/backend/database.py`
+        
+        **What needs to be done:**
+        1. Add a new entry to the `initial_activities` dictionary with the provided details
+        2. Ensure the schedule format matches existing activities
+        3. Convert schedule days and times to the proper `schedule_details` structure:
+           - `days`: Array of day names (e.g., ["Monday", "Wednesday"])
+           - `start_time`: 24-hour format (e.g., "15:30")
+           - `end_time`: 24-hour format (e.g., "17:00")
+        4. Set `participants` to the provided list or empty array
+        5. Ensure `max_participants` is an integer
+        
+        **Acceptance Criteria:**
+        - The new activity appears in the activities list when the app runs
+        - All fields (description, schedule, max_participants) are correctly populated
+        - The schedule format is consistent with existing activities
+        - Students can sign up for the activity
+        
+        **Testing:**
+        - Start the application and verify the new activity appears in `/activities` endpoint
+        - Test that the activity displays properly in the UI
+        - Verify students can sign up if under max_participants limit
